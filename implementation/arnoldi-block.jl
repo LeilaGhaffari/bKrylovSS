@@ -29,7 +29,7 @@ Res     = zeros(M, L)
 iter(i, p) = (i-1)*p+1:i*p
 
 # Block Arnoldi based on 
-#   Iterative Methods for Sparse Linear Systems, Yousef Saad
+#   Iterative Methods for Sparse Linear Systems, Yousef Saad, section 6.12
 function bArnoldi(A, X0, m, p)
     n = size(A, 1)
     U = zeros(n, p*(m+1))
@@ -51,4 +51,5 @@ function bArnoldi(A, X0, m, p)
     U, H
 end
 
+# Test block Arnoldi
 bArnoldi(A, B, M, L)
