@@ -46,7 +46,9 @@ function bArnoldi(A, X0, m, p)
             W -= U[:, iterI] * H[iterI, iterJ]
         end
         iterJp1 = iter(j+1, p)
-        U[:, iterJp1], H[iterJp1, iterJ] = qr(W)
+        Q, R = qr(W)
+        U[:, iterJp1] = Q[:, 1:p]
+        H[iterJp1, iterJ] = R
     end
     U, H
 end
