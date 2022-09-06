@@ -1,2 +1,4 @@
 *.json
 *.asv
+.ipynb_checkpoints
+test-jvsc-*.ipynb
