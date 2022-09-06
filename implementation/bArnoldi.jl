@@ -11,9 +11,8 @@ function bArnoldi(A, X0, m)
     p = size(X0, 2)
     W = zeros(n, p * (m + 1))   # W = [V1, ..., Vm+1]
     H = zeros(p * (m + 1), p * m) # H = [S1, ..., Sm]
-    for i = 1:p
-        W[:, i] = normalize(X0[:, i])
-    end
+    f = qr(X0)
+    W[:, 1:p] = f.Q[:, 1:p] # GMRES will need to keep f.R
     for j in 1:m
         iterJ = iter(j, p)
         zz = A * W[:, iterJ]
