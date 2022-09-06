@@ -38,11 +38,10 @@ for m in 1:M
     end
     z = H[1:L*(m+1), 1:L*m] \ s
     x = W[:, 1:L*m] * z
-    @show size(x)
     for i=1:L
         Res[m, i] = norm(B[:, i] - A*x[:, i])
     end
-    X_σ = x
+    X_σ[:, :] = x
 end
 
 @show X_σ
