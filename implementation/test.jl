@@ -29,4 +29,20 @@ X_exact = zeros(n, L)
 Res     = zeros(M, L)
 
 # Test block Arnoldi
-bArnoldi(A, B, M, L)
+W, H = bArnoldi(A, B, M, L)
+
+for m in 1:M
+    s = zeros(L*(m+1), L)
+    for i=1:L
+        s[1, i] = norm(B[:, i])
+    end
+    z = H[1:L*(m+1), 1:L*m] \ s
+    x = W[:, 1:L*m] * z
+    @show size(x)
+    for i=1:L
+        Res[m, i] = norm(B[:, i] - A*x[:, i])
+    end
+    X_σ = x
+end
+
+@show X_σ
