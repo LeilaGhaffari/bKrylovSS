@@ -6,7 +6,7 @@
 iter(i, p) = (i-1)*p+1:i*p
 
 # Block Arnoldi
-function bArnoldi(A, X0, m)
+function bArnoldi(A, X0, m; tol=1e-12)
     n = size(A, 1)
     p = size(X0, 2)
     W = zeros(n, p * (m + 1))   # W = [V1, ..., Vm+1]
@@ -23,6 +23,9 @@ function bArnoldi(A, X0, m)
         end
         iterJp1 = iter(j + 1, p)
         V, S = qr(zz)
+        if norm(S) < tol
+            break
+        end
         W[:, iterJp1] = V[:, 1:p]
         H[iterJp1, iterJ] = S
     end
