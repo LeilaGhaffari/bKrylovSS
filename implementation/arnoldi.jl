@@ -8,7 +8,7 @@ function arnoldi(A, u, m; tol=1e-12)
         v = A * Q[:, j]
         for i in 1:j
             H[i, j] = Q[:, i]' * v
-            v -= H[i, j] * Q[:, i]
+            v -= Q[:, i] * H[i, j]
         end
         if norm(v) < tol
             break
