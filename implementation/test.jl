@@ -6,8 +6,8 @@ include("bArnoldi.jl")
 
 
 # Set up the Shifted Linear Systems
-n = 6
-M = 3
+n = 100
+M = 30
 L = 2
 #^^^^^^^^^^^^^^^^^^^^^^^#
 #  A*X_σ - X_σ * D = B  #
@@ -29,7 +29,7 @@ X_exact = zeros(n, L)
 Res     = zeros(M, L)
 
 # Test block Arnoldi
-W, H = bArnoldi(A, B, M, L)
+W, H = bArnoldi(A, B, M)
 
 for m in 1:M
     s = zeros(L*(m+1), L)
@@ -44,4 +44,10 @@ for m in 1:M
     X_σ[:, :] = x
 end
 
-@show X_σ
+for l=1:L
+    lhs = A # - D[l, l]*I
+    b = B[:, l]
+    X_exact[:, l] = lhs \ b
+end
+
+@show norm(X_exact - X_σ)
