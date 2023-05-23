@@ -1,8 +1,8 @@
 # Shifted Linear Systems:
 
-\begin{equation}
+$$
 (\boldsymbol A + \sigma_i \boldsymbol I) \boldsymbol x(\sigma_i) = \boldsymbol b(\sigma_i)
-\end{equation}
+$$
 
 where
 
@@ -12,24 +12,24 @@ $i = 1, 2, ..., L$
 
 $\{\sigma_i\}_{i=1}^L \subset \mathbb C$
 
-### Applications:
+## Applications:
 Tikhonov–Phillips regularization, lattice quantum chromodynamics, rational Krylov subspaces, diﬀuse optical tomography, etc
 
-### Possible Solution:
+## Possible Solution:
 When $\boldsymbol A$ is *large* and *sparse*, matrix-free iterative methods are of interest, including **Krylov** subspace methods.
 
-#### Why Krylov?
+### Why Krylov?
 The Krylov subspace ($\mathcal{K}_j$) is *invariant* (does not change) under $\boldsymbol A + \sigma_i \boldsymbol I$ (scalar shift of the coeﬃcient matrix).
 
-\begin{equation}
+$$
 \mathcal{K}_j(\boldsymbol A + {\sigma_i}_1 \boldsymbol I , \boldsymbol u) = \mathcal{K}_j(\boldsymbol A + {\sigma_i}_2 \boldsymbol I , \widetilde{\boldsymbol u}) \leftarrow Shift \, Invariance
-\end{equation}
+$$
 
 where
 
 $\widetilde{\boldsymbol u} = \beta \boldsymbol u$ ($\beta \neq 0$) $\leftarrow Collinearity \, Requirement$
 
-#### Obstacles:
+### Obstacles:
 
 Unrelated RHSs (${\boldsymbol b(\sigma_i)}_{i=1}^L$ not collinear) $\rightarrow$ can't exploit the *shift invariance* property of Krylov subspace
 
@@ -37,7 +37,7 @@ Unrelated RHSs (${\boldsymbol b(\sigma_i)}_{i=1}^L$ not collinear) $\rightarrow$
 
 [22] $\rightarrow$ the collinearity requirement causes great difficulty when incorporating shifted system solvers into the subspace recycling framework (?)
 
-#### Soodhalter's proposal
+### Soodhalter's proposal
 
 Use Krylov subspace:
 * shift invariance $\checkmark$
