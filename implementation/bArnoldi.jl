@@ -1,6 +1,7 @@
 # Reference:
-#   Iterative Methods for Sparse Linear Systems 
+#   Iterative Methods for Sparse Linear Systems
 #     Yousef Saad
+#     page 219
 
 # Helper function for updating the Arnoldi matrices
 iter(i, p) = (i-1)*p+1:i*p
@@ -13,6 +14,7 @@ function bArnoldi(A, X0, m; tol=1e-12)
     H = zeros(p * (m + 1), p * m) # H = [S1, ..., Sm]
     f = qr(X0)
     W[:, 1:p] = f.Q[:, 1:p] # GMRES will need to keep f.R
+    S0 = f.R
     for j in 1:m
         iterJ = iter(j, p)
         zz = A * W[:, iterJ]
@@ -29,5 +31,5 @@ function bArnoldi(A, X0, m; tol=1e-12)
         W[:, iterJp1] = V[:, 1:p]
         H[iterJp1, iterJ] = S
     end
-    W, H
+    W, H, S0
 end
