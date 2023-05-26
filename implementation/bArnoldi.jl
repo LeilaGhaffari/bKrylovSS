@@ -1,7 +1,7 @@
 # Reference:
 #   Iterative Methods for Sparse Linear Systems
 #     Yousef Saad
-#     page 219
+#     page 219 -> TODO: implement BlockArnoldi–Ruhe’s variant (ALGORITHM 6.24, page 220)
 
 # Helper function for updating the Arnoldi matrices
 iter(i, p) = (i-1)*p+1:i*p
